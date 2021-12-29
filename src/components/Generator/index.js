@@ -11,14 +11,27 @@ export default function Generator() {
 
     const [result, setResult] = useState('');
 
-    const submitHandler = (ev) => {
+    const submitHandler =  async (ev) => {
         ev.preventDefault();
+
+        const url = 'http://localhost:8000/random'
+        const data = { min: from, max: to, count: count };
+
+
         if (count > 0 && from > 0 && to > 0 && to > from) {
-            fetch(`https://www.random.org/integers/?num=${count}&min=${from}&max=${to}&col=1&base=10&format=plain&rnd=new`)
-                .then(res => {
-                    // setResult(res);
-                    console.log(res);
-                });
+            try {
+                const response = await fetch(url, {
+                method: 'POST', // or 'PUT'
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)})
+        
+                const result = await response.json();
+                console.log('Успех:', JSON.stringify(result));
+            } catch (error) {
+                console.error('Ошибка:', error);
+            }
         }
     }
 
@@ -70,7 +83,7 @@ export default function Generator() {
 
             </form>
             <div className='generator_result'>
-                {result}125, 425, 675, 825, 975
+                {result}
             </div>
         </div>
     )
