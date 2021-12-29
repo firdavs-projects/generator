@@ -9,7 +9,9 @@ export default function Generator() {
     const [repeat, setRepeat] = useState(false);
     const [random, setRandom] = useState(false);
 
-    const [result, setResult] = useState({ data: [] });
+    const [result, setResult] = useState({
+        data: []
+    });
 
     const submitHandler = async (ev) => {
         ev.preventDefault();
@@ -29,8 +31,8 @@ export default function Generator() {
                 })
 
                 const result = await response.json();
-                // console.log('Успех:', JSON.stringify(result));
-                setResult(JSON.stringify(result))
+                console.log('Успех:', result);
+                setResult(result)
             } catch (error) {
                 console.error('Ошибка:', error);
             }
@@ -58,6 +60,7 @@ export default function Generator() {
     return (
         <div className='generator container'>
             <form className='generator_form'>
+                <h1 className='generator_title'>Генератор чисел</h1>
 
                 <label className='generator_input'>
                     Количество чисел
@@ -85,8 +88,8 @@ export default function Generator() {
 
             </form>
             <div className='generator_result'>
-                {result && result.data.length > 0 && "Сгенерированные числа: "}
-                {result.data.map(i => <span key={i.id}>{i.number}, </span>)}
+                {result && result.data.length > 0 && <div className='result_title'> Сгенерированные числа</div>}
+                {result.data.map(i => <span key={i.id}>{i.number} </span>)}
             </div>
         </div>
     )
