@@ -41,7 +41,7 @@ export default function Generator() {
     }
 
     return (
-        <div className='generator'>
+        <div className='generator container'>
             <form className='generator_form'>
 
                 <label className='generator_input'>
@@ -70,7 +70,7 @@ export default function Generator() {
 
             </form>
             <div className='generator_result'>
-                {result}
+                {result}125, 425, 675, 825, 975
             </div>
         </div>
     )
