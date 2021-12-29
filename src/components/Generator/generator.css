@@ -1,0 +1,41 @@
+.generator {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.generator_form {
+  padding: 50px;
+}
+
+.generator_input {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.generator_input input {
+  margin: 0 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 50px;
+}
+
+.generator_result {
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.generator_submit {
+  padding: 10px 25px;
+  border: none;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  margin: 15px 0;
+  width: 100%;
+}
