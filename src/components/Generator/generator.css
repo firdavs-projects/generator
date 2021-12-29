@@ -45,4 +45,9 @@
   border-radius: 5px;
   margin: 15px 0;
   width: 100%;
+  cursor: pointer;
+}
+
+.generator_submit:hover {
+  background-color: rgb(10, 95, 10);
 }

@@ -9,26 +9,28 @@ export default function Generator() {
     const [repeat, setRepeat] = useState(false);
     const [random, setRandom] = useState(false);
 
-    const [result, setResult] = useState('');
+    const [result, setResult] = useState({ data: [] });
 
-    const submitHandler =  async (ev) => {
+    const submitHandler = async (ev) => {
         ev.preventDefault();
 
         const url = 'http://localhost:8000/random'
         const data = { min: from, max: to, count: count };
-
+        // TODO add random && repeat 
 
         if (count > 0 && from > 0 && to > 0 && to > from) {
             try {
                 const response = await fetch(url, {
-                method: 'POST', // or 'PUT'
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)})
-        
+                    method: 'POST', // or 'PUT'
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+
                 const result = await response.json();
-                console.log('Успех:', JSON.stringify(result));
+                // console.log('Успех:', JSON.stringify(result));
+                setResult(JSON.stringify(result))
             } catch (error) {
                 console.error('Ошибка:', error);
             }
@@ -83,7 +85,8 @@ export default function Generator() {
 
             </form>
             <div className='generator_result'>
-                {result}
+                {result && result.data.length > 0 && "Сгенерированные числа: "}
+                {result.data.map(i => <span key={i.id}>{i.number}, </span>)}
             </div>
         </div>
     )
